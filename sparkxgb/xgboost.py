@@ -43,7 +43,7 @@ class XGBoostClassifier(XGboostEstimator):
                  growPolicy="depthwise",
                  interactionConstraints=None,
                  labelCol="label",
-                 lambda_=1.0,  # Rename of 'lambda' param, as this is a reserved keyword in python.
+                 reg_lambda=1.0,  # Rename of 'lambda' param, as this is a reserved keyword in python.
                  lambdaBias=0.0,
                  leafPredictionCol=None,
                  maxBins=16,
@@ -84,8 +84,6 @@ class XGBoostClassifier(XGboostEstimator):
                  weightCol=None):
         super(XGBoostClassifier, self).__init__(classname="ml.dmlc.xgboost4j.scala.spark.XGBoostClassifier")
         kwargs = self._input_kwargs
-        # if "lambda_" in kwargs:
-        #     kwargs["lambda"] = kwargs.pop("lambda_")
         self.setParams(**kwargs)
 
     @keyword_only
@@ -108,7 +106,7 @@ class XGBoostClassifier(XGboostEstimator):
                   growPolicy="depthwise",
                   interactionConstraints=None,
                   labelCol="label",
-                  lambda_=1.0,  # Rename of 'lambda' param, as this is a reserved keyword in python.
+                  reg_lambda=1.0,  # Rename of 'lambda' param, as this is a reserved keyword in python.
                   lambdaBias=0.0,
                   leafPredictionCol=None,
                   maxBins=16,
