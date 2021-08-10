@@ -84,8 +84,8 @@ class XGBoostClassifier(XGboostEstimator):
                  weightCol=None):
         super(XGBoostClassifier, self).__init__(classname="ml.dmlc.xgboost4j.scala.spark.XGBoostClassifier")
         kwargs = self._input_kwargs
-        if "lambda_" in kwargs:
-            kwargs["lambda"] = kwargs.pop("lambda_")
+        # if "lambda_" in kwargs:
+        #     kwargs["lambda"] = kwargs.pop("lambda_")
         self.setParams(**kwargs)
 
     @keyword_only
