@@ -43,7 +43,7 @@ class XGBoostClassifier(XGboostEstimator):
                  growPolicy="depthwise",
                  interactionConstraints=None,
                  labelCol="label",
-                 reg_lambda=1.0,  # Rename of 'lambda' param, as this is a reserved keyword in python.
+                 regLambda=1.0,  # Rename of 'lambda' param, as this is a reserved keyword in python.
                  lambdaBias=0.0,
                  leafPredictionCol=None,
                  maxBins=16,
@@ -106,7 +106,7 @@ class XGBoostClassifier(XGboostEstimator):
                   growPolicy="depthwise",
                   interactionConstraints=None,
                   labelCol="label",
-                  reg_lambda=1.0,  # Rename of 'lambda' param, as this is a reserved keyword in python.
+                  regLambda=1.0,  # Rename of 'lambda' param, as this is a reserved keyword in python.
                   lambdaBias=0.0,
                   leafPredictionCol=None,
                   maxBins=16,
@@ -146,6 +146,8 @@ class XGBoostClassifier(XGboostEstimator):
                   verbosity=1,
                   weightCol=None):
         kwargs = self._input_kwargs
+        if "regLambda" in kwargs:
+            kwargs["lambda"] = kwargs.pop("regLambda")
         return self._set(**kwargs)
 
     def _create_model(self, java_model):
