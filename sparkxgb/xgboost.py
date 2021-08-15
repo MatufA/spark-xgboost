@@ -40,6 +40,7 @@ class XGBoostClassifier(XGboostEstimator):
                  eta: float=0.3,
                  evalMetric: Optional[Union[Callable, str, List[str]]]=None,
                  featuresCol: str="features",
+                 labelCol="label",
                  gamma: float=0.0,
                  growPolicy: str="depthwise",
                  interactionConstraints: Optional[Union[str, List[Tuple[str]]]]=None,
