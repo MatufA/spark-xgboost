@@ -40,7 +40,7 @@ class XGBoostClassifier(XGboostEstimator):
                  eta: float=0.3,
                  evalMetric: Optional[Union[Callable, str, List[str]]]=None,
                  featuresCol: str="features",
-                 labelCol="label",
+                 labelCol: str="label",
                  gamma: float=0.0,
                  growPolicy: str="depthwise",
                  interactionConstraints: Optional[Union[str, List[Tuple[str]]]]=None,
@@ -83,7 +83,8 @@ class XGBoostClassifier(XGboostEstimator):
                  treeMethod: str="auto",
                  useExternalMemory: bool=False,
                  verbosity: int=1,
-                 weightCol=None):
+                 weightCol=None,
+                 **_):
         super(XGBoostClassifier, self).__init__(classname="ml.dmlc.xgboost4j.scala.spark.XGBoostClassifier")
         kwargs = self._input_kwargs
         if "regLambda" in kwargs:
