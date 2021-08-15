@@ -83,8 +83,7 @@ class XGBoostClassifier(XGboostEstimator):
                  treeMethod: str="auto",
                  useExternalMemory: bool=False,
                  verbosity: int=1,
-                 weightCol=None,
-                 **_):
+                 weightCol=None):
         super(XGBoostClassifier, self).__init__(classname="ml.dmlc.xgboost4j.scala.spark.XGBoostClassifier")
         kwargs = self._input_kwargs
         if "regLambda" in kwargs:
