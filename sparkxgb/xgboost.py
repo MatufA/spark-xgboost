@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 from pyspark import keyword_only
-from typing import Union, Optional, List, Dict, Callable, Tuple, Any, TypeVar, Type
+from typing import Union, Optional, List, Callable, Tuple
 from sparkxgb.common import XGboostEstimator, XGboostModel
 
 
@@ -199,7 +199,7 @@ class XGBoostRegressor(XGboostEstimator):
                  growPolicy="depthwise",
                  interactionConstraints=None,
                  labelCol="label",
-                 lambda_=1.0,  # Rename of 'lambda' param, as this is a reserved keyword in python.
+                 regLambda=1.0,  # Rename of 'lambda' param, as this is a reserved keyword in python.
                  lambdaBias=0.0,
                  leafPredictionCol=None,
                  maxBins=16,
@@ -240,8 +240,6 @@ class XGBoostRegressor(XGboostEstimator):
                  weightCol=None):
         super(XGBoostRegressor, self).__init__(classname="ml.dmlc.xgboost4j.scala.spark.XGBoostRegressor")
         kwargs = self._input_kwargs
-        if "lambda_" in kwargs:
-            kwargs["lambda"] = kwargs.pop("lambda_")
         self.setParams(**kwargs)
 
     @keyword_only
@@ -265,7 +263,7 @@ class XGBoostRegressor(XGboostEstimator):
                   growPolicy="depthwise",
                   interactionConstraints=None,
                   labelCol="label",
-                  lambda_=1.0,  # Rename of 'lambda' param, as this is a reserved keyword in python.
+                  regLambda=1.0,  # Rename of 'lambda' param, as this is a reserved keyword in python.
                   lambdaBias=0.0,
                   leafPredictionCol=None,
                   maxBins=16,
@@ -305,6 +303,8 @@ class XGBoostRegressor(XGboostEstimator):
                   verbosity=1,
                   weightCol=None):
         kwargs = self._input_kwargs
+        if "regLambda" in kwargs:
+            kwargs["lambda"] = kwargs.pop("regLambda")
         return self._set(**kwargs)
 
     def _create_model(self, java_model):
